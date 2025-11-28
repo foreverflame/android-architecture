@@ -262,7 +262,9 @@ public class TasksRepository implements TasksDataSource {
         mTasksRemoteDataSource.deleteTask(checkNotNull(taskId));
         mTasksLocalDataSource.deleteTask(checkNotNull(taskId));
 
-        mCachedTasks.remove(taskId);
+        if (mCachedTasks != null) {
+            mCachedTasks.remove(taskId);
+        }
     }
 
     private void getTasksFromRemoteDataSource(@NonNull final LoadTasksCallback callback) {
